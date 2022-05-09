@@ -4,9 +4,9 @@ import './App.css';
 import {Button} from './Components/Button/Button';
 import {Todolist} from './Todolist';
 
+export type FilterValuesType = "All"|"Active"|"Completed";
+
 function App() {
-
-
 
    const[tasks1,setTasks1]=useState(
         [
@@ -37,7 +37,7 @@ function App() {
         setTasks1(newTasks);
     }
 
-    const [filter, setFilter] = useState("All")
+    const [filter, setFilter] = useState<FilterValuesType>("All")
 
     let filteredTask = tasks1
 
@@ -48,8 +48,8 @@ function App() {
         filteredTask = tasks1.filter((el) => el.isDone)
     }
 
-    const changeFilter = (filterValue: string) => {
-        setFilter(filterValue)
+    const changeFilter = (value: FilterValuesType) => {
+        setFilter(value);
     }
 
 
@@ -63,9 +63,10 @@ function App() {
                 changeFilter={changeFilter}
                 addTask={addTask}
                 changeStatus={changeStatus}
-               
-               
+                filter={filter}
             />
+
+
         </div>
     );
 }
